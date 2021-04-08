@@ -18,11 +18,11 @@ export default new Router({
       name: "registered-classes-list",
       component: () => import("./components/RegisteredClassesList")
     }
-    /*,
+    ,
     {
       path: "/classes",
       name: "classes",
-      component: () => import("./components/ClassesList")
-    }*/
+      component: () => import("./components/ClassList")
+    }
   ]
 });
