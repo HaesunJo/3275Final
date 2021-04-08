@@ -1,7 +1,7 @@
 <template>
   <div v-if="customer" class="list row">
     <div class="col-md-8">
-      <div>Hi {{customer.name}}</div>
+      <div>Hi {{customer.customerName}}</div>
     </div>
 
     <div class="col-md-6">
@@ -10,10 +10,10 @@
         <li
           class="list-group-item"
           :class="{ active: index == currentIndex }"
-          v-for="(classes, index) in classes"
+          v-for="(theClass, index) in classes"
           :key="index"
-          @click="setActiveClass(classes, index)"
-        >{{ course.title }}</li>
+          @click="setActiveClass(theClass, index)"
+        >{{ theClass.className }}</li>
       </ul>
     </div>
 
@@ -24,13 +24,13 @@
           <label>
             <strong>Class Section:</strong>
           </label>
-          {{ currentClass.Section }}
+          {{ currentClass.classSection }}
         </div>
         <div>
           <label>
             <strong>Title:</strong>
           </label>
-          {{ currentClass.name }}
+          {{ currentClass.className }}
         </div>
         <button
           v-if="regFlag"
@@ -96,7 +96,7 @@ export default {
       this.registrationRequest.action = "remove";
       this.registrationRequest.className = this.currentClass.id;
       CustomerDataService.unregister(
-        this.cistomer.id,
+        this.customer.id,
         this.registrationRequest
       ).then(response => {
         this.customer = response.data;
@@ -114,13 +114,13 @@ export default {
         this.refreshList();
       });
     },
-    setActiveClass(classes, index) {
-      this.currentClass = classes;
+    setActiveClass(theClass, index) {
+      this.currentClass = theClass;
       this.currentIndex = index;
     },
     refreshList() {
       this.retrieveCustomer(this.customer.id);
-      this.customer = this.customer.classes;
+      this.classes = this.customer.classes;
       this.currentClass = null;
       this.currentIndex = -1;
       this.regFlag = false;
