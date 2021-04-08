@@ -9,6 +9,8 @@
     </div>
 </template>
 <script>
+import data from '@/data';
+
 export default {
     name: 'Create',
     data(){

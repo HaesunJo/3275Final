@@ -13,11 +13,14 @@
 			</thead>
 
 			<tbody>
-				<tr :key = "index" v-for="(value, index) in data">
-					<th scope="col">#</th>
-					<th scope="col">{{data.writer}}</th>
-					<th scope="col">{{data.title}}</th>
-					<th scope="col">{{data.content}}</th>
+				<tr :key = "index" v-for="(value, index) in data" @click="detail(index)">
+					<td>{{index}}</td>
+                    <td></td>
+					<td></td>
+					<td></td>
+					<!-- <td>{{data.writer}}</td>
+					<td>{{data.title}}</td>
+					<td>{{data.content}}</td> -->
 				</tr>
 			</tbody>
 		</table>
@@ -27,6 +30,8 @@
 </template>
 
 <script>
+import data from '@/data';
+
 export default {
 	name: 'Read',
 	data(){
@@ -39,7 +44,15 @@ export default {
 			this.$router.push({
 				path: 'create'
 			})
-		}
+        },
+        detail(index){
+            this.$router.push({
+                name: 'Detail',
+                params:{
+                    contentId: index
+                }
+            })
+        }
 	}
 }
 </script>
