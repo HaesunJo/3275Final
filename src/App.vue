@@ -10,13 +10,18 @@
     </nav>
 
     <div class="container mt-3">
+      <Header />
       <router-view />  <!-- the vue component will display here -->
     </div>
   </div>
 </template>
 
 <script>
+import Header from './components/Header.vue';
 export default {
-  name: "app"
+  name: "app",
+  components:{
+    Header,
+  }
 };
 </script>
